@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Voiture;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class VoitureCrudController extends AbstractCrudController
 {
@@ -12,14 +14,12 @@ class VoitureCrudController extends AbstractCrudController
         return Voiture::class;
     }
 
-    /*
+    
     public function configureFields(string $pageName): iterable
     {
-        return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
-        ];
+        yield from parent::configureFields($pageName);
+
+        yield TextareaField::new('imageFile')->setFormType(VichImageType::class);
     }
-    */
+    
 }
