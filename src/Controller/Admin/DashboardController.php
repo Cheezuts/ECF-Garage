@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Voiture;
+use App\Entity\Employer;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -45,5 +46,6 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Voiture', 'fa-solid fa-car', Voiture::class);
+        yield MenuItem::linkToCrud('Employer', 'fa fa-user', Employer::class);
     }
 }

@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\EmployerRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\EmployerRepository;
 
 #[ORM\Entity(repositoryClass: EmployerRepository::class)]
 class Employer
@@ -64,5 +65,17 @@ class Employer
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getRole(): ?string
+    {
+        return $this->role;
+    }
+
+    public function setRole(string $role): self
+    {
+        $this->role = $role;
+
+        return $this;
     }
 }
