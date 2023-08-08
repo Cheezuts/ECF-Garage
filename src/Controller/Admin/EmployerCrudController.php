@@ -3,7 +3,10 @@
 namespace App\Controller\Employer;
 
 use App\Entity\Employer;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 
 class EmployerCrudController extends AbstractCrudController
 {
@@ -12,7 +15,8 @@ class EmployerCrudController extends AbstractCrudController
         return Employer::class;
     }
 
-    /*
+    
+    
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -21,5 +25,5 @@ class EmployerCrudController extends AbstractCrudController
             TextEditorField::new('description'),
         ];
     }
-    */
+    
 }

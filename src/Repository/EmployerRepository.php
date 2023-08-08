@@ -5,6 +5,9 @@ namespace App\Repository;
 use App\Entity\Employer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 
 /**
  * @extends ServiceEntityRepository<Employer>
@@ -14,7 +17,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Employer[]    findAll()
  * @method Employer[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class EmployerRepository extends ServiceEntityRepository
+class EmployerRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -39,15 +42,32 @@ class EmployerRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * Used to upgrade (rehash) the user's password automatically over time.
+     */
+    public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
+    {
+        if (!$user instanceof Employer) {
+            throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', \get_class($user)));
+        }
+
+        $user->setPassword($newHashedPassword);
+
+        $this->save($user, true);
+    } 
+    
+
+    
+
 //    /**
 //     * @return Employer[] Returns an array of Employer objects
 //     */
 //    public function findByExampleField($value): array
 //    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
+//        return $this->createQueryBuilder('a')
+//            ->andWhere('a.exampleField = :val')
 //            ->setParameter('val', $value)
-//            ->orderBy('e.id', 'ASC')
+//            ->orderBy('a.id', 'ASC')
 //            ->setMaxResults(10)
 //            ->getQuery()
 //            ->getResult()
@@ -56,8 +76,8 @@ class EmployerRepository extends ServiceEntityRepository
 
 //    public function findOneBySomeField($value): ?Employer
 //    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
+//        return $this->createQueryBuilder('a')
+//            ->andWhere('a.exampleField = :val')
 //            ->setParameter('val', $value)
 //            ->getQuery()
 //            ->getOneOrNullResult()

@@ -5,9 +5,12 @@ namespace App\Entity;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\EmployerRepository;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 
 #[ORM\Entity(repositoryClass: EmployerRepository::class)]
-class Employer
+class Employer implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -61,6 +64,7 @@ class Employer
 
         return $this;
     }
+    
     public function eraseCredentials()
     {
         // If you store any temporary, sensitive data on the user, clear it here
