@@ -8,6 +8,10 @@ body {
   color: red;
 }
 
+.content-wrapper {
+  flex: 1;
+}
+
 .navbar-brand {
   font-size: 25px;
   font-weight: bold;
@@ -166,3 +170,35 @@ body {
 }
 
 /* Footer end  */
+
+/* Card style */
+
+.card {
+  height: 350px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.img-fluid {
+  height: 150px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-body {
+  height: 200px;
+}
+
+@media (max-width: 576px) {
+  .card {
+    height: auto;
+  }
+
+  .img-fluid {
+    height: auto;
+  }
+
+  .card-body {
+    height: auto;
+  }
+}

@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home ECF Garage
+{% endblock %}
+
+{% block head %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+{% endblock %}
+
+{% block body %}
+
+	{% include 'navbar.html.twig' %}
+
+	<div class="content-wrapper">
+
+		{% block content %}
+
+			<h1 class="text-center">Nos Voitures</h1>
+
+			<div class="row">
+
+				{% for voiture in voitures %}
+
+					<div class="col-6 col-md-4 col-lg-3">
+						<div class="card text-center">
+							<img src="{{ asset('images/voitures/' ~ voiture.imageName) }}">
+							<div class="card-header">
+								<h3>{{ voiture.marque }}
+									{{ voiture.nom }}</h3>
+							</div>
+							<div class="card-body">
+								<p>Année:
+									{{ voiture.anneMiseEnCirculation }}
+								</p>
+								<p>Carburant:
+									{{ voiture.carburant }}
+								</p>
+								<p>Kilométrage:
+									{{ voiture.kilometrage }}km
+								</p>
+								<p>Prix:
+									{{ voiture.prix }}
+								</p>
+								<div class="card-footer text-center d-flex justify-content-center">
+									<a href="#" class="btn btn-primary">Détails</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				{% endfor %}
+
+
+			</div>
+
+			{# {{ dump(voitures) }} #}
+		{% endblock %}
+	</div>
+
+	{% include 'horaires.html.twig' %}
+
+	{% include 'footer.html.twig' %}
+
+
+{% endblock %}
