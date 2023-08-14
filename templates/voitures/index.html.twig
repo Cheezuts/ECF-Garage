@@ -18,18 +18,18 @@
 
 			<h1 class="text-center">Nos Voitures</h1>
 
-			<div class="row">
+			<div class="row p-2 m-2">
 
 				{% for voiture in voitures %}
 
-					<div class="col-6 col-md-4 col-lg-3">
-						<div class="card text-center">
-							<img src="{{ asset('images/voitures/' ~ voiture.imageName) }}">
-							<div class="card-header">
+					<div class="col-6 col-md-4 col-lg-3 p-4 d-flex justify-content-between" style="margin: 75px;">
+						<div class="card text-center" style="width: 45rem;">
+							<img class="card-img-top p-2 m-2" src="{{ asset('images/voitures/' ~ voiture.imageName) }}">
+							<div class="card-header p-2 m-2">
 								<h3>{{ voiture.marque }}
 									{{ voiture.nom }}</h3>
 							</div>
-							<div class="card-body">
+							<div class="card-body p-2 m-2">
 								<p>Année:
 									{{ voiture.anneMiseEnCirculation }}
 								</p>
@@ -42,7 +42,7 @@
 								<p>Prix:
 									{{ voiture.prix }}
 								</p>
-								<div class="card-footer text-center d-flex justify-content-center">
+								<div class="card-footer text-center d-flex justify-content-center p-2">
 									<a href="#" class="btn btn-primary">Détails</a>
 								</div>
 							</div>
