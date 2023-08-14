@@ -18,11 +18,11 @@
 
 			<h1 class="text-center">Nos Voitures</h1>
 
-			<div class="row p-2 m-2">
+			<div class="row p-2 m-2 justify-content-center">
 
 				{% for voiture in voitures %}
 
-					<div class="col-6 col-md-4 col-lg-3 p-4 d-flex justify-content-between" style="margin: 75px;">
+					<div class="col-6 col-md-4 col-lg-3 d-flex justify-content-between" style="margin: 20px;">
 						<div class="card text-center" style="width: 45rem;">
 							<img class="card-img-top p-2 m-2" src="{{ asset('images/voitures/' ~ voiture.imageName) }}">
 							<div class="card-header p-2 m-2">
