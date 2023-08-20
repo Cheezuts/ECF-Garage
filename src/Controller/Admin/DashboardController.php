@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Comment;
 use App\Entity\Voiture;
 use App\Entity\Employer;
 use Symfony\Component\HttpFoundation\Response;
@@ -47,6 +48,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToRoute('Aller sur le site', 'fa fa-undo', routeName: 'app_home');
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Voiture', 'fa-solid fa-car', Voiture::class);
+        yield MenuItem::linkToCrud('Commentaires', 'fa fa-comment', Comment::class);
         yield MenuItem::linkToCrud('Employer', 'fa fa-user', Employer::class);
     }
 }
